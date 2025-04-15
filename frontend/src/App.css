@@ -1,0 +1,109 @@
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+}
+
+
+.container {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.sidebar {
+  width: 350px;
+  padding: 16px 24px;
+  background-color: #f8f9fa;
+  border-right: 1px solid #ddd;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+  overflow-y: auto;
+}
+
+
+.sidebar h2 {
+  margin-top: 0px; 
+  margin-bottom: 0px;
+  font-size: 24px;  
+  color: #2c3e50;
+}
+
+
+.sidebar form {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar label {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.sidebar input,
+.sidebar select {
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.sidebar button {
+  margin-top: 24px;
+  padding: 14px 20px;
+  font-size: 14px;
+  font-weight: 600; 
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+
+.sidebar button:hover {
+  background-color: #1d4ed8;
+}
+
+.results {
+  margin-top: 20px;   
+  padding-top: 8px;  
+  border-top: 1px solid #ccc;
+}
+
+.results h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 12px;
+}
+
+.results p {
+  font-size: 15px;
+  color: #374151;
+}
+.results strong {
+  font-weight: 600;
+}
+
+
+.map-container {
+  flex: 1;
+  position: relative;
+}
+
+.map-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}

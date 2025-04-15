@@ -1,0 +1,11 @@
+streamlit
+networkx
+torch
+torch-geometric
+joblib
+pandas
+folium
+streamlit-folium
+uvicorn
+fastapi
+requests
