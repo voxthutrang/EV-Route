@@ -71,12 +71,22 @@ def serve_map(request: Request):
 
 @app.get("/locations")
 def get_locations():
-    locations = []
-    for node in G.nodes:
-        name = G.nodes[node].get("name", f"Node {node}")
-        locations.append({"label": name, "value": str(node)})
-    return locations
+    pois = pd.read_csv("data/pois.csv")
 
+    def format_label(row):
+        address = str(row.get("address")).strip().lower()
+        if address == 'nan' or address == '':
+            address = ''
+        else:
+            address = f", {row['address']}"
+        return f"{row['name']}{address}"
+
+    locations = [
+        {"label": format_label(row), "value": str(row["node"])}
+        for _, row in pois.iterrows()
+    ]
+
+    return locations
 
 @app.get("/route")
 def get_route(vehicle: str, start: int, end: int):
@@ -86,7 +96,8 @@ def get_route(vehicle: str, start: int, end: int):
     start_node = int(start)
     end_node = int(end)
 
-    G_updated = add_estimated_battery_and_temperature(G, model, x, node_id_to_idx, scaler)
+    # G_updated = add_estimated_battery_and_temperature(G, model, x, node_id_to_idx, scaler)
+    G_updated = G
 
     path_length = nx.shortest_path(G_updated, source=start_node, target=end_node, weight='length')
     path_battery = nx.shortest_path(G_updated, source=start_node, target=end_node, weight='battery')

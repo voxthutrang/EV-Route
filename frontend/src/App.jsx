@@ -25,12 +25,12 @@ function App() {
   const [locations, setLocations] = useState([]);
   const [startPoint, setStartPoint] = useState(null);
   const [endPoint, setEndPoint] = useState(null);
-  const [mapUrl, setMapUrl] = useState("http://localhost:8000/map");
+  const [mapUrl, setMapUrl] = useState("/api/map");
   const [results, setResults] = useState(null);
 
   useEffect(() => {
     const fetchLocations = async () => {
-      const res = await fetch("http://localhost:8000/locations");
+      const res = await fetch("/api/locations");
       const data = await res.json();
       setLocations(data);
     };
@@ -39,7 +39,7 @@ function App() {
 
   useEffect(() => {
     const fetchVehicles = async () => {
-      const res = await fetch("http://localhost:8000/vehicles");
+      const res = await fetch("/api/vehicles");
       const data = await res.json();
       setVehicleOptions(data);
       if (data.length > 0) setVehicleType(data[0]);
@@ -59,11 +59,11 @@ function App() {
 
     try {
       const query = `vehicle=${vehicleType.value}&start=${startPoint.value}&end=${endPoint.value}`;
-      const response = await fetch(`http://localhost:8000/route?${query}`);
+      const response = await fetch(`/api/route?${query}`);
       const data = await response.json();
 
       setResults(data);
-      setMapUrl(`http://localhost:8000/map?ts=${Date.now()}`); // refresh map
+      setMapUrl(`/api/map?ts=${Date.now()}`); // refresh map
     } catch (error) {
       console.error("Error fetching route:", error);
     }
